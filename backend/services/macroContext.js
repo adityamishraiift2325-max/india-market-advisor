@@ -4,7 +4,8 @@ import { fileURLToPath } from 'url';
 import { getCommodities, getForex } from './marketData.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const OVERRIDE_FILE = path.join(__dirname, '..', 'data', 'macroOverrides.json');
+// backend/state/, not backend/data/ — see the comment in sipTracker.js.
+const OVERRIDE_FILE = path.join(__dirname, '..', 'state', 'macroOverrides.json');
 
 // Hardcoded fallbacks — update manually or override via settings page.
 // RBI repo rate / CPI / IIP move slowly, so static defaults are acceptable.
@@ -31,6 +32,7 @@ function readOverrides() {
 
 export function saveOverrides(partial) {
   const merged = { ...readOverrides(), ...partial, lastUpdated: new Date().toISOString().slice(0, 10) };
+  fs.mkdirSync(path.dirname(OVERRIDE_FILE), { recursive: true });
   fs.writeFileSync(OVERRIDE_FILE, JSON.stringify(merged, null, 2));
   return merged;
 }
@@ -43,6 +45,7 @@ export function resetOverrides() {
   const current = readOverrides();
   for (const k of RESETTABLE) delete current[k];
   current.lastUpdated = new Date().toISOString().slice(0, 10);
+  fs.mkdirSync(path.dirname(OVERRIDE_FILE), { recursive: true });
   fs.writeFileSync(OVERRIDE_FILE, JSON.stringify(current, null, 2));
   return { ...DEFAULTS, ...current };
 }

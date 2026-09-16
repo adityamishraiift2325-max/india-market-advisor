@@ -5,7 +5,11 @@ import { getMacro } from './macroContext.js';
 import { getNiftyPE } from './marketData.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const BASELINE_FILE = path.join(__dirname, '..', 'data', 'macroBaseline.json');
+// data/macroBaseline.json ships a static default, baked into the image.
+// state/macroBaseline.json is where a runtime snapshot actually gets written —
+// see the comment in sipTracker.js for why these two directories are kept apart.
+const DEFAULT_BASELINE_FILE = path.join(__dirname, '..', 'data', 'macroBaseline.json');
+const BASELINE_FILE = path.join(__dirname, '..', 'state', 'macroBaseline.json');
 
 // Current values of the indicators we watch.
 async function currentSnapshot() {
@@ -28,6 +32,7 @@ function numOrNull(v) {
 function readBaseline() {
   try {
     if (fs.existsSync(BASELINE_FILE)) return JSON.parse(fs.readFileSync(BASELINE_FILE, 'utf-8'));
+    if (fs.existsSync(DEFAULT_BASELINE_FILE)) return JSON.parse(fs.readFileSync(DEFAULT_BASELINE_FILE, 'utf-8'));
   } catch { /* ignore */ }
   return { capturedAt: null, indicators: null };
 }
@@ -39,6 +44,7 @@ function readBaseline() {
 export async function snapshotBaseline() {
   const indicators = await currentSnapshot();
   const out = { capturedAt: new Date().toISOString(), indicators };
+  fs.mkdirSync(path.dirname(BASELINE_FILE), { recursive: true });
   fs.writeFileSync(BASELINE_FILE, JSON.stringify(out, null, 2));
   return { ok: true, ...out };
 }

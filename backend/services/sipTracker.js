@@ -3,7 +3,11 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const STORE_FILE = path.join(__dirname, '..', 'data', 'sipActuals.json');
+// Lives in backend/state/, NOT backend/data/ — data/ ships static reference
+// files baked into the Docker image (sectors.json, brokers.json, ...); a
+// deploy volume mounted there would shadow all of them with an empty mount.
+// state/ holds only runtime-written files, so a volume can own it entirely.
+const STORE_FILE = path.join(__dirname, '..', 'state', 'sipActuals.json');
 
 function readStore() {
   try {
@@ -15,6 +19,7 @@ function readStore() {
 }
 
 function writeStore(store) {
+  fs.mkdirSync(path.dirname(STORE_FILE), { recursive: true });
   fs.writeFileSync(STORE_FILE, JSON.stringify(store, null, 2));
   return store;
 }

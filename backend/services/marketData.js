@@ -170,7 +170,7 @@ export async function getSectorByKey(key) {
  */
 export async function getNiftyPE() {
   try {
-    const ovPath = path.join(__dirname, '..', 'data', 'macroOverrides.json');
+    const ovPath = path.join(__dirname, '..', 'state', 'macroOverrides.json');
     if (fs.existsSync(ovPath)) {
       const ov = JSON.parse(fs.readFileSync(ovPath, 'utf-8'));
       if (ov.niftyPE != null && !Number.isNaN(Number(ov.niftyPE))) return Number(ov.niftyPE);
