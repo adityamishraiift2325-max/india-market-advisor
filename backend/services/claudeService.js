@@ -36,24 +36,40 @@ function parseJSON(text) {
 async function callClaude({ system, user }) {
   let result = '';
   let errored = null;
+  let stderrLog = '';
 
-  for await (const msg of query({
-    prompt: user,
-    options: {
-      systemPrompt: system,
-      model: MODEL,
-      maxTurns: 1,
-      allowedTools: [], // pure text generation, no agentic tool use
-      permissionMode: 'bypassPermissions',
-    },
-  })) {
-    if (msg.type === 'result') {
-      if (msg.subtype === 'success') {
-        result = msg.result || '';
-      } else {
-        errored = msg.subtype || 'unknown error';
+  try {
+    for await (const msg of query({
+      prompt: user,
+      options: {
+        systemPrompt: system,
+        model: MODEL,
+        maxTurns: 1,
+        allowedTools: [], // pure text generation, no agentic tool use
+        permissionMode: 'bypassPermissions',
+        // Captures the underlying CLI subprocess's stderr instead of letting
+        // an SDK-level crash ("Claude Code process exited with code N") stay
+        // opaque — the actual cause (missing binary, auth failure, platform
+        // mismatch, ...) is what the process itself wrote there.
+        stderr: (chunk) => {
+          stderrLog += chunk;
+        },
+      },
+    })) {
+      if (msg.type === 'result') {
+        if (msg.subtype === 'success') {
+          result = msg.result || '';
+        } else {
+          errored = msg.subtype || 'unknown error';
+        }
       }
     }
+  } catch (e) {
+    console.error('[claudeService] Agent SDK process failed:', e.message);
+    if (stderrLog) console.error('[claudeService] subprocess stderr:', stderrLog.trim());
+    throw new Error(
+      `Claude call failed: ${e.message}${stderrLog ? ` — stderr: ${stderrLog.trim().slice(0, 500)}` : ''}`
+    );
   }
 
   if (!result) {
@@ -61,6 +77,7 @@ async function callClaude({ system, user }) {
       errored && /login|auth/i.test(errored)
         ? ' — not authenticated. Run `claude setup-token` and put CLAUDE_CODE_OAUTH_TOKEN in backend/.env, then restart.'
         : '';
+    if (stderrLog) console.error('[claudeService] subprocess stderr:', stderrLog.trim());
     throw new Error(`Claude call failed${errored ? `: ${errored}` : ''}${hint}`);
   }
   return result;
