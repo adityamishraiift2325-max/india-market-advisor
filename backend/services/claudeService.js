@@ -45,8 +45,12 @@ async function callClaude({ system, user }) {
         systemPrompt: system,
         model: MODEL,
         maxTurns: 1,
-        allowedTools: [], // pure text generation, no agentic tool use
-        permissionMode: 'bypassPermissions',
+        allowedTools: [], // pure text generation, no agentic tool use — no
+        // permissionMode set: 'bypassPermissions' needs allowDangerouslySkip-
+        // Permissions and is refused outright when running as root (the
+        // default in a Docker container) — but with zero allowed tools there
+        // is nothing to ever prompt for, so the SDK's default mode behaves
+        // identically here without hitting that check at all.
         // Captures the underlying CLI subprocess's stderr instead of letting
         // an SDK-level crash ("Claude Code process exited with code N") stay
         // opaque — the actual cause (missing binary, auth failure, platform
