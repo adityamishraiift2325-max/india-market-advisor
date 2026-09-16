@@ -1,0 +1,15 @@
+{
+  "festivals": [
+    { "name": "Akshaya Tritiya", "date": "2025-04-30", "goldTiltFactor": 1.4, "windowWeeksBefore": 5 },
+    { "name": "Dhanteras",       "date": "2025-10-20", "goldTiltFactor": 1.5, "windowWeeksBefore": 4 },
+    { "name": "Diwali",          "date": "2025-10-21", "goldTiltFactor": 1.3, "windowWeeksBefore": 4 },
+    { "name": "Gudi Padwa",      "date": "2025-03-30", "goldTiltFactor": 1.2, "windowWeeksBefore": 2 },
+    { "name": "Akshaya Tritiya", "date": "2026-04-19", "goldTiltFactor": 1.4, "windowWeeksBefore": 5 },
+    { "name": "Dhanteras",       "date": "2026-11-07", "goldTiltFactor": 1.5, "windowWeeksBefore": 4 },
+    { "name": "Diwali",          "date": "2026-11-08", "goldTiltFactor": 1.3, "windowWeeksBefore": 4 },
+    { "name": "Gudi Padwa",      "date": "2026-03-19", "goldTiltFactor": 1.2, "windowWeeksBefore": 2 },
+    { "name": "Akshaya Tritiya", "date": "2027-05-09", "goldTiltFactor": 1.4, "windowWeeksBefore": 5 },
+    { "name": "Dhanteras",       "date": "2027-10-28", "goldTiltFactor": 1.5, "windowWeeksBefore": 4 },
+    { "name": "Diwali",          "date": "2027-10-29", "goldTiltFactor": 1.3, "windowWeeksBefore": 4 }
+  ]
+}

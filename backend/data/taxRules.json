@@ -1,0 +1,15 @@
+{
+  "assetClasses": {
+    "equity":        { "stcgMonths": 12, "stcgRate": 20,  "ltcgRate": 12.5, "ltcgExemptionLakh": 1.25, "section80C": false },
+    "largecapMF":    { "stcgMonths": 12, "stcgRate": 20,  "ltcgRate": 12.5, "ltcgExemptionLakh": 1.25, "section80C": false },
+    "midSmallMF":    { "stcgMonths": 12, "stcgRate": 20,  "ltcgRate": 12.5, "ltcgExemptionLakh": 1.25, "section80C": false },
+    "elss":          { "stcgMonths": 36, "stcgRate": 20,  "ltcgRate": 12.5, "ltcgExemptionLakh": 1.25, "section80C": true, "section80CLimit": 150000 },
+    "indexETF":      { "stcgMonths": 12, "stcgRate": 20,  "ltcgRate": 12.5, "ltcgExemptionLakh": 1.25, "section80C": false },
+    "sectorETF":     { "stcgMonths": 12, "stcgRate": 20,  "ltcgRate": 12.5, "ltcgExemptionLakh": 1.25, "section80C": false },
+    "debtMF":        { "stcgMonths": 36, "stcgRate": "slab", "ltcgRate": "slab", "ltcgExemptionLakh": 0, "section80C": false },
+    "govtBonds":     { "stcgMonths": 12, "stcgRate": "slab", "ltcgRate": 10,  "ltcgExemptionLakh": 0, "section80C": false },
+    "digitalGold":   { "stcgMonths": 24, "stcgRate": "slab", "ltcgRate": 20,  "ltcgExemptionLakh": 0, "section80C": false, "indexation": true },
+    "digitalSilver": { "stcgMonths": 24, "stcgRate": "slab", "ltcgRate": 20,  "ltcgExemptionLakh": 0, "section80C": false, "indexation": true },
+    "reits":         { "stcgMonths": 12, "stcgRate": 15,  "ltcgRate": 10,  "ltcgExemptionLakh": 0, "section80C": false }
+  }
+}

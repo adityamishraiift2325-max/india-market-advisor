@@ -1,0 +1,14 @@
+// One colour per asset class, shared across the chart, the monthly card and the
+// schedule breakdown so the same asset reads as the same colour everywhere.
+export const PALETTE = [
+  '#6366f1', '#8b5cf6', '#ec4899', '#f43f5e', '#f97316',
+  '#eab308', '#22c55e', '#14b8a6', '#06b6d4', '#3b82f6', '#a855f7',
+];
+
+export function assetColors(keys = []) {
+  const map = {};
+  keys.forEach((k, i) => {
+    map[k] = PALETTE[i % PALETTE.length];
+  });
+  return map;
+}

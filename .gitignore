@@ -1,0 +1,7 @@
+node_modules/
+.env
+*.log
+backend/data/cache/
+backend/data/macroOverrides.json
+backend/data/sipActuals.json
+frontend/dist/

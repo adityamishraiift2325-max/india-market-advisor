@@ -1,0 +1,33 @@
+{
+  "indices": [
+    { "key": "nifty50", "name": "NIFTY 50", "symbol": "^NSEI", "type": "broad" },
+    { "key": "sensex", "name": "BSE SENSEX", "symbol": "^BSESN", "type": "broad" },
+    { "key": "niftybank", "name": "NIFTY Bank", "symbol": "^NSEBANK", "type": "sector" },
+    { "key": "niftyit", "name": "NIFTY IT", "symbol": "^CNXIT", "type": "sector" },
+    { "key": "niftypharma", "name": "NIFTY Pharma", "symbol": "^CNXPHARMA", "type": "sector" },
+    { "key": "niftyauto", "name": "NIFTY Auto", "symbol": "^CNXAUTO", "type": "sector" },
+    { "key": "niftyfmcg", "name": "NIFTY FMCG", "symbol": "^CNXFMCG", "type": "sector" },
+    { "key": "niftymetal", "name": "NIFTY Metal", "symbol": "^CNXMETAL", "type": "sector" },
+    { "key": "niftyrealty", "name": "NIFTY Realty", "symbol": "^CNXREALTY", "type": "sector" },
+    { "key": "niftyenergy", "name": "NIFTY Energy", "symbol": "^CNXENERGY", "type": "sector" }
+  ],
+  "commodities": [
+    { "key": "gold", "name": "Gold (USD/oz)", "symbol": "GC=F" },
+    { "key": "silver", "name": "Silver (USD/oz)", "symbol": "SI=F" }
+  ],
+  "forex": [
+    { "key": "usdinr", "name": "USD/INR", "symbol": "INR=X" }
+  ],
+  "assetClasses": [
+    "Equity (direct)",
+    "Large-cap MF",
+    "Mid/Small-cap MF",
+    "Index ETF (NIFTY/Sensex)",
+    "Sectoral ETF",
+    "Debt MF",
+    "Government Bonds",
+    "Digital Gold",
+    "Digital Silver",
+    "REITs"
+  ]
+}

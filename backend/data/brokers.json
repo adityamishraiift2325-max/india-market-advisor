@@ -1,0 +1,165 @@
+{
+  "brokers": [
+    {
+      "id": "zerodha",
+      "name": "Zerodha (Kite + Coin)",
+      "tagline": "Stocks & ETFs on Kite, zero-commission direct mutual funds on Coin.",
+      "account": [
+        "Sign up at zerodha.com with your PAN, Aadhaar and bank details.",
+        "Finish the online KYC (Aadhaar OTP e-sign) — usually approved in a day.",
+        "Add funds to your trading account from your linked bank.",
+        "Use Kite for stocks/ETFs and Coin (coin.zerodha.com) for mutual fund SIPs."
+      ],
+      "assetHowTo": {
+        "equity": "On Kite, search the stock, place a buy order, and use a GTT or a monthly reminder to repeat — direct equity has no true auto-SIP.",
+        "largecapMF": "On Coin, open the direct-growth plan and tap 'Start SIP' with your date and amount.",
+        "midSmallMF": "Same as above on Coin — pick the direct-growth plan and set a monthly SIP.",
+        "elss": "On Coin, start a SIP in a direct ELSS fund; each instalment locks in for 3 years.",
+        "indexETF": "Buy the ETF on Kite; set a monthly GTT or calendar reminder (ETFs can't auto-SIP on Coin).",
+        "sectorETF": "Buy on Kite the same way as an index ETF — manual monthly buy or GTT.",
+        "debtMF": "On Coin, start a SIP in a direct debt fund of the chosen category.",
+        "govtBonds": "Buy G-Secs/SGBs via Kite's Bonds/Government Securities section during RBI windows.",
+        "digitalGold": "Use Gold ETFs or Sovereign Gold Bonds on Kite — Zerodha doesn't sell MMTC digital gold.",
+        "digitalSilver": "Buy a Silver ETF on Kite and repeat monthly.",
+        "reits": "REITs trade like shares — buy the units on Kite and repeat monthly."
+      },
+      "covers": [
+        "equity",
+        "largecapMF",
+        "midSmallMF",
+        "elss",
+        "indexETF",
+        "sectorETF",
+        "debtMF",
+        "govtBonds",
+        "digitalGold",
+        "digitalSilver",
+        "reits"
+      ],
+      "substitutes": [
+        "digitalGold"
+      ]
+    },
+    {
+      "id": "groww",
+      "name": "Groww",
+      "tagline": "Stocks, ETFs and direct mutual funds in one simple app.",
+      "account": [
+        "Download Groww or open groww.in and sign up with your email and phone.",
+        "Enter PAN and complete the in-app KYC (Aadhaar + selfie).",
+        "Link and verify your bank account.",
+        "Search any fund, stock or ETF and invest from the same dashboard."
+      ],
+      "assetHowTo": {
+        "equity": "Search the stock and buy; set a personal monthly reminder, as direct shares have no auto-SIP.",
+        "largecapMF": "Open the direct plan, tap 'Start SIP', set amount and date — Groww auto-debits via mandate.",
+        "midSmallMF": "Same flow — choose the direct-growth plan and start a monthly SIP.",
+        "elss": "Start a SIP in a direct ELSS fund; remember each instalment is locked for 3 years.",
+        "indexETF": "Buy the ETF from the Stocks/ETF tab; repeat monthly (no auto-SIP for ETFs).",
+        "sectorETF": "Buy from the ETF section and repeat monthly.",
+        "debtMF": "Start a SIP in a direct debt fund just like an equity fund.",
+        "govtBonds": "Use Groww's Bonds section for G-Secs/SGBs where available.",
+        "digitalGold": "Groww offers digital gold — buy a fixed rupee amount monthly, or use a Gold ETF.",
+        "digitalSilver": "Buy a Silver ETF from the ETF section monthly.",
+        "reits": "Buy listed REIT units from the Stocks tab and repeat monthly."
+      },
+      "covers": [
+        "equity",
+        "largecapMF",
+        "midSmallMF",
+        "elss",
+        "indexETF",
+        "sectorETF",
+        "debtMF",
+        "govtBonds",
+        "digitalGold",
+        "digitalSilver",
+        "reits"
+      ],
+      "substitutes": []
+    },
+    {
+      "id": "kuvera",
+      "name": "Kuvera",
+      "tagline": "100% commission-free direct mutual funds, digital gold, no stock noise.",
+      "account": [
+        "Sign up at kuvera.in or the Kuvera app with your email.",
+        "Complete KYC online (PAN + Aadhaar); existing KYC is auto-fetched.",
+        "Link your bank and set up an auto-pay mandate for SIPs.",
+        "Invest only in direct mutual funds and digital gold — Kuvera has no brokerage/stocks."
+      ],
+      "assetHowTo": {
+        "equity": "Not supported — Kuvera has no stock trading. Use a large-cap index fund as a proxy, or buy shares on a broker.",
+        "largecapMF": "Search the direct plan, set a SIP amount and date; the mandate auto-debits.",
+        "midSmallMF": "Same flow — pick the direct-growth plan and start a monthly SIP.",
+        "elss": "Start a SIP in a direct ELSS fund; each instalment locks for 3 years.",
+        "indexETF": "Kuvera offers index funds rather than ETFs — use the equivalent direct index fund SIP.",
+        "sectorETF": "Use a thematic/sector index fund SIP, as ETFs aren't traded here.",
+        "debtMF": "Start a SIP in a direct debt fund of the chosen category.",
+        "govtBonds": "Use a Gilt/G-Sec direct fund SIP as the closest no-broker option.",
+        "digitalGold": "Kuvera offers digital gold (Augmont) — buy a fixed amount monthly.",
+        "digitalSilver": "Use a Silver fund-of-fund SIP if available; otherwise a Silver ETF on a broker.",
+        "reits": "Not supported directly — REITs need a broking account."
+      },
+      "covers": [
+        "largecapMF",
+        "midSmallMF",
+        "elss",
+        "debtMF",
+        "digitalGold",
+        "indexETF",
+        "sectorETF",
+        "govtBonds",
+        "digitalSilver"
+      ],
+      "substitutes": [
+        "indexETF",
+        "sectorETF",
+        "govtBonds",
+        "digitalSilver"
+      ]
+    },
+    {
+      "id": "mfcentral",
+      "name": "MF Central / AMC direct",
+      "tagline": "Buy straight from the fund houses — lowest cost, a bit more manual.",
+      "account": [
+        "Register at mfcentral.com (run jointly by CAMS & KFintech) with PAN and email.",
+        "Verify with the OTP sent to your registered mobile/email.",
+        "Your existing folios across all AMCs appear in one place.",
+        "Start SIPs scheme-by-scheme, or invest directly on each AMC's own website."
+      ],
+      "assetHowTo": {
+        "equity": "Not available — direct stocks need a demat/broking account.",
+        "largecapMF": "Start a direct-plan SIP on the AMC site or via MF Central's transact flow.",
+        "midSmallMF": "Same — pick the direct-growth plan on the AMC website and set a SIP.",
+        "elss": "Start a direct ELSS SIP on the AMC site; each instalment locks for 3 years.",
+        "indexETF": "Use the AMC's direct index fund SIP (ETFs need a demat account).",
+        "sectorETF": "Use the AMC's direct thematic/sector index fund SIP.",
+        "debtMF": "Start a direct debt fund SIP on the AMC website or MF Central.",
+        "govtBonds": "Buy SGBs via RBI Retail Direct (rbiretaildirect.org.in) or a Gilt direct fund.",
+        "digitalGold": "Use a Gold fund-of-fund direct SIP, or SGBs via RBI Retail Direct.",
+        "digitalSilver": "Use a Silver fund-of-fund direct SIP from the AMC.",
+        "reits": "Not available without a demat/broking account."
+      },
+      "covers": [
+        "largecapMF",
+        "midSmallMF",
+        "elss",
+        "debtMF",
+        "indexETF",
+        "sectorETF",
+        "govtBonds",
+        "digitalGold",
+        "digitalSilver"
+      ],
+      "substitutes": [
+        "indexETF",
+        "sectorETF",
+        "govtBonds",
+        "digitalGold",
+        "digitalSilver"
+      ]
+    }
+  ]
+}
