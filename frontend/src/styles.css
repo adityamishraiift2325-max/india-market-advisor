@@ -440,6 +440,26 @@ code { background: var(--panel-2); padding: 2px 6px; border-radius: 5px; font-si
 
 @media (max-width: 720px) {
   .alloc-top { grid-template-columns: 1fr; }
-  .macro-form { grid-template-columns: 1fr 1fr; }
-  .topbar { flex-direction: column; gap: 12px; }
+  .macro-form { grid-template-columns: 1fr; }
+  .app { padding: 0 14px 48px; }
+
+  /* Form fields carry a 180px min-width for desktop; on a phone let them fill
+     their column instead of forcing it wider than the screen. */
+  .allocate-form input, .macro-form input, .macro-form select,
+  .log-form select, .log-form input { min-width: 0; width: 100%; }
+  .allocate-form label, .log-form label { flex: 1 1 100%; }
+  .settings-card { padding: 16px; }
+
+  /* SIP Health: score ring stacks above the stats, stats go 2-up (three
+     110px-min columns don't fit beside the ring in ~300px). */
+  .health-hero { padding: 18px 16px; gap: 18px; justify-content: center; }
+  .health-stats { grid-template-columns: repeat(2, 1fr); min-width: 0; width: 100%; }
+
+  /* Header: left-aligned brand, and a nav that swipes sideways instead of
+     being wider than the phone (six tabs were forcing the whole page wider
+     than the screen, clipping "Overview" and "Settings"). */
+  .topbar { flex-direction: column; align-items: stretch; gap: 10px; padding: 14px 0 10px; }
+  .nav { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: 0 0 auto; white-space: nowrap; padding: 8px 12px; }
 }

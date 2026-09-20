@@ -1,6 +1,8 @@
 import { Chart } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
+  BarController,
+  LineController,
   BarElement,
   LineElement,
   PointElement,
@@ -10,7 +12,21 @@ import {
   Filler,
 } from 'chart.js';
 
-ChartJS.register(BarElement, LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Filler);
+// This panel uses the generic <Chart> component with mixed bar + line datasets.
+// Unlike the typed <Bar>/<Line> components, <Chart> does NOT auto-register its
+// controllers — without these two it throws '"bar" is not a registered
+// controller' and unmounts the whole app (blank screen).
+ChartJS.register(
+  BarController,
+  LineController,
+  BarElement,
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Tooltip,
+  Filler
+);
 
 const PALETTE = [
   '#6366f1', '#8b5cf6', '#ec4899', '#f43f5e', '#f97316',
