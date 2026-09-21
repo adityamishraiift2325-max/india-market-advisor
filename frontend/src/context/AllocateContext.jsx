@@ -40,6 +40,9 @@ export function AllocateProvider({ children }) {
   const [pauseMonths, setPauseMonths] = useState([]);
   const [inflation, setInflation] = useState(6);
   const [sipPlan, setSipPlan] = useState(null);
+  // Resolved plans by risk profile for the current inputs (filled as the
+  // background prefetch lands), so the UI can say which styles are ready.
+  const [profilePlans, setProfilePlans] = useState({});
   const [sipLoading, setSipLoading] = useState(false);
   const [sipError, setSipError] = useState(null);
 
@@ -78,7 +81,7 @@ export function AllocateProvider({ children }) {
 
   const submit = useCallback(
     async (e) => {
-      e.preventDefault();
+      e?.preventDefault?.();
       setLoading(true);
       setError(null);
       setResult(null);
@@ -96,19 +99,23 @@ export function AllocateProvider({ children }) {
 
   const submitSip = useCallback(
     async (e) => {
-      e.preventDefault();
+      e?.preventDefault?.();
       setSipLoading(true);
       setSipError(null);
       setSipPlan(null);
+      setProfilePlans({});
       try {
         const res = await fetchSipPlan(profile);
         setSipPlan(res);
+        setProfilePlans({ [profile]: res });
         // While the user reads this plan, get the other two profiles ready in
         // the background — same inputs, just a different split — so switching
         // the profile toggle and regenerating lands instantly instead of
         // re-waiting through the AI call.
         PROFILES.filter((p) => p !== profile).forEach((p) => {
-          fetchSipPlan(p).catch(() => {}); // speculative — a failure here is silent
+          fetchSipPlan(p)
+            .then((r) => setProfilePlans((prev) => ({ ...prev, [p]: r })))
+            .catch(() => {}); // speculative — a failure here is silent
         });
       } catch (err) {
         setSipError(err.message);
@@ -117,6 +124,55 @@ export function AllocateProvider({ children }) {
       }
     },
     [profile, fetchSipPlan]
+  );
+
+  // Monthly-amount view of the SIP total, for the jar/slider UI. The API still
+  // takes a total, so changing months keeps the monthly amount constant.
+  const monthly = Math.round(Number(sipTotal) / Number(months)) || 0;
+  const setMonthly = useCallback((m) => setSipTotal(Math.round(m) * Number(months)), [months]);
+  const setDuration = useCallback((n) => {
+    setSipTotal(monthly * n);
+    setMonths(n);
+    setPauseMonths([]);
+  }, [monthly]);
+
+  // Flip the shown SIP plan to another risk profile. The other two were
+  // prefetched when the plan was generated, so this is normally instant.
+  const selectSipProfile = useCallback(
+    async (p) => {
+      setProfile(p);
+      setSipError(null);
+      const pending = fetchSipPlan(p);
+      try {
+        const res = await Promise.race([pending, new Promise((r) => setTimeout(() => r(null), 60))]);
+        if (res) { setSipPlan(res); return; }
+        setSipLoading(true); // not ready yet: show the reading screen until it lands
+        setSipPlan(await pending);
+      } catch (err) {
+        setSipError(err.message);
+      } finally {
+        setSipLoading(false);
+      }
+    },
+    [fetchSipPlan]
+  );
+
+  // Lump sum has no prefetch: switching profile re-runs the allocation.
+  const selectLumpProfile = useCallback(
+    async (p) => {
+      setProfile(p);
+      setLoading(true);
+      setError(null);
+      setResult(null);
+      try {
+        setResult(await api.allocate(Number(amount), p));
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [amount]
   );
 
   const togglePause = useCallback((i) => {
@@ -138,6 +194,7 @@ export function AllocateProvider({ children }) {
     inflation, setInflation,
     sipPlan, sipLoading, sipError,
     submit, submitSip, togglePause,
+    monthly, setMonthly, setDuration, selectSipProfile, selectLumpProfile, profilePlans,
   };
 
   return <AllocateContext.Provider value={value}>{children}</AllocateContext.Provider>;

@@ -1,0 +1,88 @@
+/* Allocate walkthrough. Everything is scoped under .al so no other page is affected.
+   Palette: deep navy with champagne gold; muted class colours (see util.js CLASS_COLORS). */
+.al {
+  --bg0:#05080F; --bg1:#0B1222;
+  --tx:#EDEFF5; --tx-dim:#A3ACC2; --tx-faint:#6F7A94;
+  --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.18);
+  --glass-a:rgba(255,255,255,.07); --glass-b:rgba(255,255,255,.022);
+  --gold1:#F2DDAA; --gold2:#D5AC5E; --gold3:#A97C36; --jade:#6FCBA6; --warn:#D99A8A;
+  --grad-cta:linear-gradient(135deg,#F4E0AE 0%,#D8AF62 55%,#B5843A 100%);
+  --grad-text:linear-gradient(120deg,#F7E7BC 0%,#D8AF62 62%,#F2DDAA 100%);
+  --cta-ink:#1B1408;
+  --mood-a:#2E3F8F; --mood-b:#1B6478; --mood-c:#4A3A78;
+  --ease:cubic-bezier(.2,.7,.3,1);
+  max-width:980px; margin:0 auto;
+}
+.al *{box-sizing:border-box}
+.al button,.al input{font-family:inherit; color:inherit}
+.al h2,.al h3,.al h4{font-family:Fraunces,Georgia,serif; font-weight:500; letter-spacing:-.012em; margin:0}
+.al .mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums}
+.al-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:10px}
+.al-head h2{font-size:22px}
+.al-classic{font-size:12px; color:var(--tx-faint); cursor:pointer; text-decoration:underline; background:none; border:0; padding:0}
+
+.al-stage{container-type:inline-size; container-name:stage; height:clamp(600px,calc(100dvh - 230px),740px); position:relative; display:flex; flex-direction:column;
+  background:linear-gradient(180deg,var(--bg1),var(--bg0)); border:1px solid var(--line-2); border-radius:26px; overflow:hidden; color:var(--tx);
+  font-family:Manrope,-apple-system,"Segoe UI",sans-serif; font-size:14px; line-height:1.55; box-shadow:0 30px 70px -30px rgba(0,0,0,.85)}
+.al-stage[data-mood="conservative"]{--mood-a:#17707A; --mood-b:#244F8F; --mood-c:#1E6A5A}
+.al-stage[data-mood="aggressive"]{--mood-a:#7E3048; --mood-b:#9A5A2A; --mood-c:#5A3470}
+.al-aurora{position:absolute; inset:0; pointer-events:none; z-index:0}
+.al-blob{position:absolute; width:360px; height:360px; border-radius:50%; filter:blur(90px); opacity:.34; transition:background-color 1.3s var(--ease); animation:al-drift 24s ease-in-out infinite alternate}
+.al-b1{background:var(--mood-a); top:-120px; left:-90px}
+.al-b2{background:var(--mood-b); right:-130px; top:170px; animation-delay:-8s}
+.al-b3{background:var(--mood-c); bottom:-150px; left:14%; opacity:.26; animation-delay:-15s}
+@keyframes al-drift{to{transform:translate(46px,-30px) scale(1.12)}}
+.al-top,.al-vp,.al-bot{position:relative; z-index:1}
+.al-top{display:flex; align-items:center; gap:10px; padding:13px 16px 8px; min-height:52px}
+.al-back{width:32px; height:32px; border-radius:50%; border:1px solid var(--line-2); background:rgba(255,255,255,.05); cursor:pointer; color:var(--tx-dim); font-size:16px; line-height:1; flex:none}
+.al-back:hover{border-color:var(--gold2)} .al-back[hidden]{display:none}
+.al-pips{display:flex; gap:4px; flex:1; min-width:0}
+.al-pip{flex:1; height:22px; background:none; border:0; padding:0; display:grid; align-items:center; cursor:default}
+.al-pip span{display:block; height:3px; border-radius:2px; background:rgba(255,255,255,.14); transition:background .4s var(--ease), transform .4s var(--ease)}
+.al-pip.done span{background:var(--gold3)} .al-pip.cur span{background:var(--grad-cta); transform:scaleY(1.9)}
+.al-pip:not(:disabled){cursor:pointer}
+.al-where{font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--tx-faint); font-weight:800; white-space:nowrap}
+@container stage (max-width:520px){.al-where{display:none}}
+.al-vp{flex:1; min-height:0; overflow:hidden; position:relative}
+.al-beat{position:absolute; inset:0; padding:6px 18px 12px; overflow-y:auto; scrollbar-width:none}
+.al-beat::-webkit-scrollbar{display:none}
+@container stage (min-width:640px){.al-beat{padding:8px 46px 14px}}
+.al-bot{display:flex; align-items:center; gap:10px; padding:10px 16px 16px; min-height:76px; border-top:1px solid var(--line); background:linear-gradient(180deg,transparent,rgba(5,8,15,.55))}
+.al-hint{margin:0; flex:1; text-align:center; font-size:12px; color:var(--tx-faint)}
+.al-btn{border:0; border-radius:14px; padding:14px 18px; font-size:14px; font-weight:800; cursor:pointer}
+.al-btn:disabled{opacity:.5; cursor:default}
+.al-btn.pri{flex:1; background:var(--grad-cta); color:var(--cta-ink); box-shadow:0 10px 24px -12px rgba(213,172,94,.8), 0 1px 0 rgba(255,255,255,.45) inset}
+.al-btn.pri:hover:not(:disabled){filter:brightness(1.06)}
+.al-btn.ghost{background:rgba(255,255,255,.06); border:1px solid var(--line-2); color:var(--tx-dim); font-weight:700}
+.al-btn.ghost:hover:not(:disabled){border-color:var(--gold2); color:var(--gold1)}
+.al-btn.sq{padding:12px 16px; font-size:17px; line-height:1}
+.al-btn.sm{padding:8px 13px; font-size:12px; border-radius:11px; flex:none}
+.al-btn:focus-visible,.al-back:focus-visible,.al-pip:focus-visible,.al-chip:focus-visible{outline:2px solid var(--tx); outline-offset:2px}
+.al-scenelbl{font-size:11.5px; color:var(--tx-faint); font-family:"IBM Plex Mono",monospace; white-space:nowrap}
+.al-glass{background:linear-gradient(135deg,var(--glass-a),var(--glass-b)); border:1px solid var(--line); backdrop-filter:blur(14px); border-radius:18px}
+.al-q{font-family:Fraunces,Georgia,serif; font-size:26px; line-height:1.14; margin:8px 0 6px; font-weight:500}
+.al-q.sm{font-size:22px; margin-bottom:10px}
+@container stage (min-width:640px){.al-q{font-size:36px} .al-q.sm{font-size:28px}}
+.al-sub{margin:0 0 12px; color:var(--tx-dim); font-size:13.5px; max-width:54ch}
+.al-sec{font-family:Manrope,sans-serif; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--tx-faint); font-weight:800; margin:0 0 8px}
+.al-note{font-size:11.5px; color:var(--tx-faint); margin:4px 0 0}
+.al-chips{display:flex; flex-wrap:wrap; gap:6px}
+.al-chip{border:1px solid var(--line-2); background:rgba(255,255,255,.05); border-radius:20px; padding:7px 13px; font-size:12px; cursor:pointer; color:var(--tx-dim); font-weight:600}
+.al-chip:hover{border-color:var(--gold2); color:var(--tx)}
+.al-chip.on{background:var(--grad-cta); border-color:transparent; color:var(--cta-ink); font-weight:800}
+.al-stp{display:inline-flex; align-items:center; gap:9px; font-size:12px; color:var(--tx-faint)}
+.al-stp button{width:32px; height:32px; border-radius:50%; border:1px solid var(--line-2); background:rgba(255,255,255,.05); cursor:pointer; font-size:16px; line-height:1}
+.al-stp button:hover{border-color:var(--gold2)}
+.al-stp .v{font-family:"IBM Plex Mono",monospace; color:var(--tx); min-width:56px; text-align:center; font-size:13px; white-space:nowrap}
+.al-numin{width:60px; text-align:center; background:rgba(255,255,255,.06); border:1px solid var(--line-2); border-radius:10px; padding:6px 4px; font-family:"IBM Plex Mono",monospace; font-size:13px}
+.al-numin:focus-visible{outline:2px solid var(--gold2); outline-offset:1px}
+
+/* sheet + toast */
+.al-sheet{position:absolute; inset:0; z-index:20; overflow:hidden}
+.al-sheet-bk{position:absolute; inset:0; background:rgba(3,5,10,.62); backdrop-filter:blur(5px)}
+.al-sheet-c{position:absolute; left:0; right:0; bottom:0; max-width:640px; margin:0 auto; max-height:86%; overflow:auto; background:linear-gradient(180deg,#18213D,#0B1122); border-top:1px solid var(--line-2); border-radius:24px 24px 0 0; padding:10px 18px 26px; touch-action:pan-x}
+.al-grab{width:42px; height:4px; border-radius:2px; background:rgba(255,255,255,.28); margin:0 auto 12px; cursor:grab; touch-action:none}
+.al-sh-h{display:flex; align-items:center; gap:10px; margin-bottom:10px}
+.al-sh-h h3{font-size:21px; flex:1} .al-sh-x{width:32px; height:32px; border-radius:50%; border:1px solid var(--line-2); background:rgba(255,255,255,.05); cursor:pointer; color:var(--tx-dim)}
+.al-toast{position:absolute; left:50%; bottom:92px; background:var(--tx); color:#0B1222; font-size:12.5px; font-weight:800; padding:10px 16px; border-radius:24px; z-index:30; white-space:nowrap; box-shadow:0 12px 30px -8px rgba(0,0,0,.6)}
+@media(prefers-reduced-motion:reduce){.al-blob{animation:none}}

@@ -2,6 +2,7 @@ import { Routes, Route, NavLink } from 'react-router-dom';
 import Overview from './pages/Overview.jsx';
 import Sectors from './pages/Sectors.jsx';
 import Allocate from './pages/Allocate.jsx';
+import AllocateClassic from './pages/AllocateClassic.jsx';
 import DeepDive from './pages/DeepDive.jsx';
 import SIPHealth from './pages/SIPHealth.jsx';
 import SIPSimulator from './pages/SIPSimulator.jsx';
@@ -45,6 +46,7 @@ export default function App() {
           <Route path="/sectors" element={<Sectors />} />
           <Route path="/sectors/:key" element={<DeepDive />} />
           <Route path="/allocate" element={<Allocate />} />
+          <Route path="/allocate/classic" element={<AllocateClassic />} />
           <Route path="/sip-health" element={<SIPHealth />} />
           <Route path="/sip-simulator" element={<SIPSimulator />} />
           <Route path="/settings" element={<Settings />} />

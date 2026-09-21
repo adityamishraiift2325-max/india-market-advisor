@@ -32,6 +32,7 @@ export const api = {
   saveMacro: (overrides) => post('/macro/override', overrides),
   resetMacro: () => post('/macro/reset', {}),
   fdRate: () => get('/macro/fd-rate'),
+  festivals: () => get('/analyze/festivals'),
   macroAlerts: () => get('/macro/alerts'),
   saveMacroBaseline: () => post('/macro/baseline', {}),
   narrative: () => get('/analyze/narrative'),

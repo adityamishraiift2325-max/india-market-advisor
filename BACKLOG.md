@@ -47,6 +47,30 @@ drift. Both are staged below, cheapest first.
       Meaningful new integration work; do this only once Steps 1-3 have
       proven the checkpoint concept is actually used.
 
+## Allocate walkthrough (built 2026-09-21, not yet deployed)
+
+The Allocate page is now a step-by-step walkthrough (jar, duration timeline,
+real calendar, skip-months picker, temperament cards, reading screen, verdict
+ring, outline orbs, growth chart, reality, tax, take-away) in
+`frontend/src/allocate/` + `pages/Allocate.jsx`. The old form is kept at
+`/allocate/classic` as a fallback. Uses `motion` (MIT) for animation; **no
+Tailwind/shadcn** — KokonutUI and Bklit patterns were re-implemented by hand.
+
+- [ ] **Decide whether to delete the classic page** once the walkthrough has been
+      used for a while (`pages/AllocateClassic.jsx` + its CSS in `styles.css`).
+- [ ] **Lump-sum growth screen.** SIP has a growth chart; lump sum doesn't
+      (no horizon input). Add a horizon or a fixed 1/3/5-year view.
+- [ ] **Tax screen for lump sum.** The lump-sum API returns no tax flags.
+- [ ] **Broker guide for lump sum.** The guide is keyed by SIP asset keys; lump
+      classes only have labels.
+- [ ] **Persist the generated plan across a page refresh** (sessionStorage) so a
+      refresh doesn't cost another 30-60s AI call.
+- [ ] **Real-phone performance check.** Blurred glass + the drifting background
+      can be heavy on low-end Android. Run MotionScore (motion.dev) on the live
+      URL after deploy; dial back `backdrop-filter` / the blobs if needed.
+- [ ] **Code-split the Allocate walkthrough** (bundle is already >500 kB).
+- [ ] Festival calendar ends Oct 2027; longer horizons get no tilt (also noted below).
+
 ## Performance
 
 - [ ] **Switch AI calls to the direct Anthropic API** (`@anthropic-ai/sdk` +

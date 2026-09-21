@@ -1,0 +1,109 @@
+/* Result screens: verdict, where, growth, reality, tax, take (scoped under .al). */
+.al-banner{display:flex; gap:8px; align-items:center; font-size:11.5px; color:var(--gold1); background:rgba(213,172,94,.1); border:1px solid rgba(213,172,94,.3); border-radius:11px; padding:6px 10px; margin-bottom:8px}
+.al-vd{display:flex; flex-direction:column; gap:6px}
+@container stage (min-width:640px){.al-vd{flex-direction:row; align-items:center; gap:36px; padding-top:12px} .al-vd-l{flex:none} .al-vd-r{flex:1}}
+.al-vd-l{display:grid; place-items:center; position:relative; margin:0 auto}
+.al-ring{display:block; width:min(44cqi,206px); aspect-ratio:1; overflow:visible}
+@container stage (min-width:640px){.al-ring{width:262px}}
+.al-arc{fill:none; stroke-width:20; cursor:pointer}
+.al-rc{position:absolute; inset:0; display:grid; place-content:center; text-align:center; pointer-events:none; padding:0 26%}
+.al-rc-a{font-family:Manrope,sans-serif; font-variant-numeric:tabular-nums; font-size:clamp(16px,4.6cqi,24px); font-weight:800; line-height:1.15; letter-spacing:-.02em}
+.al-rc-b{font-size:10.5px; color:var(--tx-dim); margin-top:2px; line-height:1.25} .al-rc-c{font-size:10px; color:var(--tx-faint); margin-top:3px; line-height:1.2}
+.al-ringhint{text-align:center; font-size:11px; color:var(--tx-faint); margin:2px 0 0}
+@container stage (min-width:640px){.al-ringhint{text-align:left}}
+.al-thesis{font-family:Fraunces,serif; font-size:17px; line-height:1.34; margin:2px 0 8px}
+@container stage (min-width:640px){.al-thesis{font-size:23px}}
+.al-flip{display:flex; gap:4px; background:rgba(0,0,0,.3); border:1px solid var(--line-2); border-radius:14px; padding:4px}
+.al-flip button{flex:1; border:0; background:transparent; border-radius:10px; padding:8px 4px; cursor:pointer; color:var(--tx-faint)}
+.al-flip button b{display:block; font-size:12.5px; font-weight:800} .al-flip button small{font-size:10.5px; font-family:"IBM Plex Mono",monospace}
+.al-flip button.on{background:rgba(255,255,255,.1); color:var(--tx)} .al-flip button.on small{color:var(--gold1)}
+.al-flip button:focus-visible{outline:2px solid var(--gold2); outline-offset:-2px}
+.al-ready{font-size:11.5px; color:var(--jade); margin:7px 0 8px}
+.al-kpis{display:grid; grid-template-columns:repeat(2,1fr); gap:8px}
+@container stage (min-width:640px){.al-kpis{grid-template-columns:repeat(4,1fr)}}
+.al-kpi{padding:8px 11px 9px; border-radius:13px}
+.al-kpi span{font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--tx-faint); display:block; font-weight:700}
+.al-kpi b{font-family:Manrope,sans-serif; font-variant-numeric:tabular-nums; font-size:15px; font-weight:800}
+.al-kpi.g b{background:var(--grad-text); -webkit-background-clip:text; background-clip:text; color:transparent}
+
+/* orbs */
+.al-capline{font-size:12px; color:var(--tx-faint); margin:0 0 4px}
+.al-bubbles{position:relative; height:410px}
+@container stage (min-width:640px){.al-bubbles{height:390px}}
+.al-bo{position:absolute; border:0; padding:0; background:none; cursor:pointer}
+.al-bo:focus-visible{outline:2px solid var(--tx); outline-offset:3px; border-radius:50%}
+.al-bi{width:100%; height:100%; border-radius:50%; display:grid; place-content:center; text-align:center; color:var(--tx)}
+.al-bi .bn{font-weight:700; line-height:1.1; opacity:.92} .al-bi .ba{font-weight:800; font-variant-numeric:tabular-nums; line-height:1.15} .al-bi .bp{font-size:10px; color:var(--tx-dim); font-family:"IBM Plex Mono",monospace}
+.al-why{background:rgba(255,255,255,.05); border-left:2px solid var(--gold2); border-radius:0 12px 12px 0; padding:11px 13px; margin-bottom:12px}
+.al-why small{font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold2); font-weight:800; display:block; margin-bottom:4px} .al-why p{margin:0; font-size:13.5px}
+.al-metas{display:flex; gap:18px; margin-bottom:12px; font-size:12px; color:var(--tx-faint); flex-wrap:wrap} .al-metas b{display:block; font-family:Manrope,sans-serif; font-size:16px; font-weight:800; color:var(--tx)}
+.al-fund{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:10px; padding:10px 0; border-bottom:1px solid var(--line); font-size:13px}
+.al-fund small{display:block; color:var(--tx-faint); font-size:11px}
+.al-tkr{font-family:"IBM Plex Mono",monospace; font-size:10px; background:rgba(255,255,255,.08); border-radius:5px; padding:1px 6px; margin-left:6px; color:var(--tx-dim)}
+.al-fund .fa{font-family:Manrope,sans-serif; font-variant-numeric:tabular-nums; font-weight:800; text-align:right; align-self:center}
+
+/* growth */
+.al-gr{position:relative; padding:10px 6px 4px; border-radius:18px; touch-action:pan-y}
+.al-gr svg{display:block; width:100%; height:auto; overflow:visible}
+.al-legend{display:flex; flex-wrap:wrap; gap:4px 14px; font-size:11px; color:var(--tx-dim); margin:8px 2px 0}
+.al-legend span{display:inline-flex; align-items:center; gap:6px} .al-legend i{display:inline-block; width:16px; height:0; border-top:2px solid}
+.al-ro{margin-top:10px; padding:11px 14px; border-radius:16px}
+.al-ro-top{display:flex; align-items:center; gap:10px}
+.al-ro-top .ttl{flex:1; min-width:0} .al-ro-top .ttl small{display:block; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold2); font-weight:800} .al-ro-top .ttl b{font-size:13.5px}
+.al-nav2{display:flex; align-items:center; gap:4px; font-size:11px; color:var(--tx-faint); font-family:"IBM Plex Mono",monospace}
+.al-nav2 button{width:27px; height:27px; border-radius:50%; border:1px solid var(--line-2); background:rgba(255,255,255,.05); cursor:pointer; color:var(--tx-dim); padding:0; font-size:13px}
+.al-nav2 button:hover:not(:disabled){border-color:var(--gold2); color:var(--gold1)} .al-nav2 button:disabled{opacity:.3; cursor:default}
+.al-ro-vals{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:9px}
+.al-ro-vals div{font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--tx-faint); font-weight:700}
+.al-ro-vals b{display:block; font-family:Manrope,sans-serif; font-variant-numeric:tabular-nums; font-size:14px; letter-spacing:0; text-transform:none; color:var(--tx); font-weight:800} .al-ro-vals .g b{color:var(--gold1)}
+.al-ro-fest{display:flex; gap:7px; align-items:center; font-size:11.5px; color:var(--gold1); margin-top:7px}
+.al-ro-split{display:flex; flex-wrap:wrap; gap:3px 12px; margin-top:8px; font-size:11.5px; color:var(--tx-dim)}
+.al-ro-split span{display:inline-flex; align-items:center; gap:5px} .al-ro-split .mono{color:var(--tx)}
+.al-dotc{width:9px; height:9px; border-radius:50%; flex:none}
+.al-linkbtn{margin-top:8px; background:none; border:0; color:var(--gold1); font-size:12.5px; font-weight:800; cursor:pointer; padding:4px 0}
+.al-linkbtn:hover{text-decoration:underline}
+.al-stab{width:100%; border-collapse:collapse; font-size:12px} .al-stab th{text-align:left; color:var(--tx-faint); font-weight:700; font-size:10px; letter-spacing:.09em; text-transform:uppercase; padding:6px; border-bottom:1px solid var(--line-2)}
+.al-stab td{padding:7px 6px; border-bottom:1px solid var(--line); font-variant-numeric:tabular-nums} .al-stab td.n{font-family:"IBM Plex Mono",monospace} .al-stab tr.p td{color:var(--tx-faint); text-decoration:line-through} .al-stab .fs{color:var(--gold1); font-size:11px} .al-stab-w{overflow-x:auto}
+
+/* reality + tax */
+.al-rcb{padding:12px 0 8px; border-top:1px solid var(--line)} .al-rcb:first-of-type{border-top:0; padding-top:2px}
+.al-rcb h4{font-family:Manrope,sans-serif; font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--tx-faint); font-weight:800; margin-bottom:10px}
+.al-cnote{font-size:11.5px; color:var(--tx-faint); margin:2px 0 0}
+.al-xb{display:flex; gap:14px; align-items:flex-end; height:104px}
+.al-xcol{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; gap:6px; font-size:11px; color:var(--tx-faint); font-weight:700}
+.al-xcol i{display:block; width:100%; max-width:70px; border-radius:12px 12px 4px 4px; background:rgba(255,255,255,.12); position:relative}
+.al-xcol.on i{background:var(--grad-cta)} .al-xcol.on{color:var(--tx)}
+.al-xcol i em{position:absolute; top:-18px; left:0; right:0; text-align:center; font-style:normal; font-size:11.5px; font-family:Manrope,sans-serif; font-weight:800; color:var(--tx)}
+.al-pace{display:flex; align-items:center; gap:10px; font-size:12.5px; color:var(--tx-dim)}
+.al-pace .ok{width:24px; height:24px; border-radius:50%; background:rgba(111,203,166,.16); border:1px solid rgba(111,203,166,.55); color:var(--jade); display:grid; place-items:center; font-weight:900; flex:none}
+.al-pace .ok.no{background:rgba(217,154,138,.12); border-color:rgba(217,154,138,.5); color:var(--warn)}
+.al-t80{padding:11px 13px; margin-bottom:10px; border-radius:14px}
+.al-t80 .tk{height:8px; background:rgba(0,0,0,.3); border-radius:5px; overflow:hidden; margin:8px 0 5px} .al-t80 .tk i{display:block; height:100%; background:linear-gradient(90deg,#5570B8,#8FA6E8); border-radius:5px}
+.al-flags{max-height:266px; overflow-y:auto; scrollbar-width:thin; padding-right:4px}
+.al-flag{display:grid; grid-template-columns:10px 1fr; gap:11px; padding:10px 2px; border-bottom:1px solid var(--line); font-size:12.5px; color:var(--tx-dim)} .al-flag b{color:var(--tx); display:block; font-size:12.5px}
+.al-flag .dot{width:8px; height:8px; border-radius:50%; margin-top:6px; background:var(--tx-faint)} .al-flag.w .dot{background:var(--warn)}
+
+/* take */
+.al-tk-sum{padding:13px 15px; border-radius:16px; margin-bottom:10px}
+.al-tk-sum .n{font-family:Manrope,sans-serif; font-size:26px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums; line-height:1.1} .al-tk-sum .n small{font-size:13px; font-weight:600; color:var(--tx-faint); letter-spacing:0}
+.al-tk-sum p{margin:6px 0 0; font-size:12.5px; color:var(--tx-dim)}
+.al-tk-list{list-style:none; margin:0; padding:0}
+.al-tk-list li{display:grid; grid-template-columns:34px minmax(0,1fr) auto; gap:12px; align-items:center; padding:8px 2px; border-bottom:1px solid var(--line)} .al-tk-list li:last-child{border-bottom:0}
+.al-gl{width:34px; height:34px; border-radius:50%; border:1px solid rgba(213,172,94,.45); color:var(--gold1); display:grid; place-items:center} .al-gl svg{width:16px; height:16px}
+.al-tk-list b{display:block; font-size:13.5px} .al-tk-list .d{display:block; font-size:12px; color:var(--tx-dim); line-height:1.4}
+.al-disc{font-size:11px; color:var(--tx-faint); margin:10px 0 0; max-width:56ch}
+.al-steps{margin:8px 0 12px; padding-left:20px; color:var(--tx-dim); font-size:13px} .al-steps li{margin-bottom:5px}
+.al-hold{position:relative; width:100%; max-width:320px; height:54px; border-radius:14px; border:1px solid var(--line-2); background:rgba(255,255,255,.06); overflow:hidden; cursor:pointer; touch-action:none; user-select:none; -webkit-user-select:none; color:var(--tx); font-weight:800; font-size:14px; padding:0}
+.al-hold .fill{position:absolute; left:0; top:0; bottom:0; width:0; background:var(--grad-cta)}
+.al-hold .lb{position:relative; display:flex; align-items:center; justify-content:center; gap:10px; height:100%} .al-hold.done .lb{color:var(--cta-ink)}
+.al-hold:focus-visible{outline:2px solid var(--tx); outline-offset:2px}
+.al-tk-list .al-hold{width:auto; min-width:118px; height:36px; font-size:12px; border-radius:11px; padding:0 12px}
+
+/* phone: keep the verdict and take-away screens inside one screenful */
+@container stage (max-width:520px){
+  .al-thesis{font-size:15px; line-height:1.3}
+  .al-vd .al-note{display:none}
+  .al-tk-list li{padding:6px 2px}
+  .al-tk-sum{padding:10px 13px; margin-bottom:6px}
+  .al-tk-sum .n{font-size:22px}
+}

@@ -175,7 +175,9 @@ export function buildSipPlan({
     return {
       monthIndex: mo.monthIndex,
       label: mo.label,
-      date: mo.date.toISOString().slice(0, 10),
+      // Local calendar date. toISOString() converts to UTC first, which shifts
+      // the day back by one on a server running in IST (the 5th became the 4th).
+      date: `${mo.date.getFullYear()}-${String(mo.date.getMonth() + 1).padStart(2, '0')}-${String(mo.date.getDate()).padStart(2, '0')}`,
       isPaused: mo.isPaused,
       festivalNote,
       marketNudgeNote: !mo.isPaused && nudgeActive ? nudgeNote : null,

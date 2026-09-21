@@ -19,8 +19,17 @@ const brokers = JSON.parse(
   fs.readFileSync(path.join(__dirname, '..', 'data', 'brokers.json'), 'utf-8')
 );
 const SIP_LABELS = Object.fromEntries(SIP_ASSETS.map((a) => [a.key, a.label]));
+const festivalCalendar = JSON.parse(
+  fs.readFileSync(path.join(__dirname, '..', 'data', 'festivalCalendar.json'), 'utf-8')
+);
 
 const router = Router();
+
+// Festival dates + gold/silver tilt windows, so the Allocate calendar and
+// duration timeline can mark the same months the planner tilts. Static data.
+router.get('/festivals', (req, res) => {
+  res.json({ festivals: festivalCalendar.festivals });
+});
 
 // Broker setup guide — deterministic (no AI latency). Returns the account steps
 // plus only the per-asset how-to lines relevant to THIS plan's asset classes.
