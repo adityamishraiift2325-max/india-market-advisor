@@ -80,8 +80,14 @@ export default function Allocate() {
   useEffect(() => {
     if (!toastMsg) return undefined;
     if (toastEl.current && !reduce) animate(toastEl.current, { opacity: [0, 1], y: [14, 0] }, SPRING(400, 28));
-    const id = setTimeout(() => setToastMsg(null), 2600);
-    return () => clearTimeout(id);
+    let anim;
+    const id = setTimeout(() => {
+      if (toastEl.current && !reduce) {
+        anim = animate(toastEl.current, { opacity: 0, y: 8 }, { duration: 0.2 });
+        anim.then(() => setToastMsg(null));
+      } else setToastMsg(null);
+    }, 2600);
+    return () => { clearTimeout(id); anim?.stop?.(); };
   }, [toastMsg, reduce]);
 
   const build = () => { (sip ? submitSip : submit)(); go('reading', 1); };
@@ -120,8 +126,8 @@ export default function Allocate() {
 
   const isLast = idx === list.length - 1;
   let bottom;
-  if (err && beat === 'reading') bottom = <p className="al-hint">Nothing was lost — your inputs are still there.</p>;
-  else if (beat === 'path') bottom = <p className="al-hint">Tap a card to begin — no forms, no scrolling.</p>;
+  if (err && beat === 'reading') bottom = <p className="al-hint">Nothing was lost. Your inputs are still there.</p>;
+  else if (beat === 'path') bottom = <p className="al-hint">Tap a card to begin. No forms, no scrolling.</p>;
   else if (beat === 'reading') bottom = <p className="al-hint">The wait is real: the plan is built fresh from today’s market.</p>;
   else if (!inResults) {
     bottom = (

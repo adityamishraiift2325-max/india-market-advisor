@@ -133,7 +133,7 @@ export function VerdictBeat({ view, demo }) {
   const ready = view.sip ? others.filter((p) => profilePlans[p]).length : 0;
   return (
     <>
-      {demo && <div className="al-banner">Market data is illustrative right now — figures may not match the live market.</div>}
+      {demo && <div className="al-banner">Market data is illustrative right now, figures may not match the live market.</div>}
       <div className="al-vd">
         <div className="al-vd-l">
           <svg className="al-ring" viewBox="0 0 200 200" role="img" aria-label="Allocation ring. Tap a slice for its amount.">
@@ -159,7 +159,7 @@ export function VerdictBeat({ view, demo }) {
           <p className="al-ringhint">Tap a slice to read it. Tap it again to go back.</p>
           <p className="al-thesis">{view.strategy}</p>
           <Segmented value={profile} onChange={flipTo} options={PROFILES.map((p) => ({ value: p, label: PROFILE_META[p].tag }))} />
-          <div className="al-ready">{view.sip ? (ready === 2 ? `✓ ${others.map((p) => PROFILE_META[p].tag).join(' and ')} already computed — flip instantly` : 'Computing the other styles in the background…') : 'Flipping re-runs the plan for that style.'}</div>
+          <div className="al-ready">{view.sip ? (ready === 2 ? `✓ ${others.map((p) => PROFILE_META[p].tag).join(' and ')} already computed. Flip instantly.` : 'Computing the other styles in the background…') : 'Flipping re-runs the plan for that style.'}</div>
           <div className="al-kpis">
             {(view.sip
               ? [['Total invested', rupees(view.invested)], ['Base monthly', rupees(view.base)], ['Inflation-adj. target', rupees(view.adjTarget)], ['Est. XIRR (yearly)', `~${view.xirr}% a year`, 1]]
@@ -203,7 +203,7 @@ export function WhereBeat({ view, openClass }) {
   useEffect(() => {
     if (!layout || reduce || !box.current) return;
     const els = box.current.querySelectorAll('.al-bo');
-    els.forEach((el, i) => animate(el, { scale: [0, 1], opacity: [0, 1] }, { ...SPRING(260, 18), delay: i * 0.07 }));
+    els.forEach((el, i) => animate(el, { scale: [0.9, 1], opacity: [0, 1] }, { ...SPRING(260, 18), delay: i * 0.07 }));
     els.forEach((el, i) => animate(el.firstChild, { y: [0, -6, 0] }, { duration: 6 + (i % 3), repeat: Infinity, ease: 'easeInOut', delay: i * 0.4 }));
   }, [layout, reduce]);
   return (

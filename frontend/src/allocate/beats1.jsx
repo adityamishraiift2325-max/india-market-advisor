@@ -101,7 +101,7 @@ export function DurationBeat() {
   const fromX = (e) => { const r = jr.current.getBoundingClientRect(); set(((e.clientX - r.left) / r.width) * MAXM); };
   const last = ml[months - 1];
   const notes = [];
-  if (months < 12) notes.push('Under a year is a short window for equity — a bad stretch may not recover in time.');
+  if (months < 12) notes.push('Under a year is a short window for equity. A bad stretch may not recover in time.');
   if (last && fests.length) {
     const lastFest = fests.reduce((a, f) => (f.date > a ? f.date : a), '');
     if (last.d > new Date(lastFest + 'T00:00:00')) notes.push(`Festival tilts are only known until ${lastFest.slice(0, 4)}, so later months get none.`);
@@ -194,7 +194,7 @@ export function DayBeat() {
           <b>{MONF[m]} {y}</b>
           <button type="button" aria-label="Next month" disabled={off >= months - 1} onClick={() => setOff(Math.min(months - 1, off + 1))}>›</button>
         </div>
-        <div className="al-cal-badge">{f && <><Diya />Festival month — gold and silver lean in (×{f.goldTiltFactor})</>}</div>
+        <div className="al-cal-badge">{f && <><Diya />Festival month, gold and silver lean in (×{f.goldTiltFactor})</>}</div>
         <div className="al-cal-g">
           {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((d, i) => <div key={d} className={`al-cal-w ${i > 4 ? 'we' : ''}`}>{d}</div>)}
           {Array.from({ length: lead }, (_, i) => <div key={`b${i}`} />)}
@@ -215,7 +215,7 @@ export function DayBeat() {
       </div>
       <div className="al-dayread">
         <b>{DOWF[dow]}, {sipDate} {MONF[m]} {y}</b>
-        <span>{we && <><span className="wk">That’s a weekend.</span> A debit on a non-working day usually goes through on the next working day — your platform decides. </>}
+        <span>{we && <><span className="wk">That’s a weekend.</span> A debit on a non-working day usually goes through on the next working day. Your platform decides. </>}
           Debited on the {ordinal(sipDate)} of every month, {months} times. Last one: {DOWF[last.getDay()].slice(0, 3)}, {last.getDate()} {MON[last.getMonth()]} {last.getFullYear()}.</span>
       </div>
     </>
@@ -242,7 +242,7 @@ export function RhythmBeat() {
     <>
       <h2 className="al-q sm">Fine-tune the rhythm <span style={{ color: 'var(--tx-faint)', fontSize: '.55em', fontFamily: 'Manrope,sans-serif', fontWeight: 600 }}>· optional</span></h2>
       <div className="al-mod al-glass">
-        <div className="al-mod-h"><div><div className="al-mod-t">Raise it every year</div><div className="al-mod-s">Step-up SIP — incomes tend to grow</div></div>
+        <div className="al-mod-h"><div><div className="al-mod-t">Raise it every year</div><div className="al-mod-s">Step-up SIP, incomes tend to grow</div></div>
           <Switch checked={stepUpOn} onChange={setStepUpOn} label="Step-up SIP" /></div>
         {stepUpOn && (
           <>
@@ -311,7 +311,7 @@ export function TemperBeat() {
   return (
     <>
       <h2 className="al-q">A rough month happens.<br />Markets fall 15%. You…</h2>
-      <p className="al-sub">There’s no wrong answer — it just changes the mix.</p>
+      <p className="al-sub">There’s no wrong answer. It just changes the mix.</p>
       <div className="al-tcards">
         {PROFILES.map((k, i) => {
           const p = PROFILE_META[k];

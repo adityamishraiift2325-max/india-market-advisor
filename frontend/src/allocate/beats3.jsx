@@ -32,7 +32,7 @@ export function GrowthBeat({ view, compact, openSchedule, fdRate }) {
   useEffect(() => {
     setSel(n - 1);
     if (reduce || !clip.current) { clip.current?.setAttribute('width', W); return undefined; }
-    const a = animate(0, W, { duration: 1.2, ease: [0.85, 0, 0.15, 1], onUpdate: (w) => clip.current?.setAttribute('width', w) });
+    const a = animate(0, W, { duration: 1.2, ease: [0.2, 0.7, 0.3, 1], onUpdate: (w) => clip.current?.setAttribute('width', w) });
     return () => a.stop();
   }, [n, view.xirr, reduce]);
   const at = (e) => { const r = host.current.getBoundingClientRect(); const f = (e.clientX - r.left) / r.width; setSel(clamp(Math.round(((f * W - padL) / cw) * n), 1, n) - 1); };
@@ -110,7 +110,7 @@ export function ScheduleSheetBody({ view }) {
             const p = r.date ? isoParts(r.date) : null;
             return (
               <tr key={r.monthIndex} className={r.isPaused ? 'p' : ''}>
-                <td>{r.label}</td><td className="n">{p ? `${String(p.d).padStart(2, '0')}/${String(p.m + 1).padStart(2, '0')}` : '—'}</td>
+                <td>{r.label}</td><td className="n">{p ? `${String(p.d).padStart(2, '0')}/${String(p.m + 1).padStart(2, '0')}` : '-'}</td>
                 <td className="n">{r.isPaused ? 'skipped' : rupees(r.totalThisMonth)}</td><td className="n">{rupees(r.runningTotal)}</td>
                 <td className="fs">{r.festivalNote ? r.festivalNote.split(' (')[0] : ''}</td>
               </tr>
@@ -140,9 +140,9 @@ export function RealityBeat({ view, months }) {
       {view.sip && (
         <div className="al-rcb"><h4>Does it keep pace with inflation?</h4>
           <div className="al-pace"><span className={`ok ${sf >= view.adjTarget ? '' : 'no'}`}>{sf >= view.adjTarget ? '✓' : '!'}</span>
-            <span>{rupees(sf)} projected vs. {rupees(view.adjTarget)} needed after inflation over {months} months — {sf >= view.adjTarget ? 'clears it.' : 'falls short.'}</span></div></div>
+            <span>{rupees(sf)} projected vs. {rupees(view.adjTarget)} needed after inflation over {months} months. {sf >= view.adjTarget ? 'Clears it.' : 'Falls short.'}</span></div></div>
       )}
-      <div className="al-rcb"><h4>Estimated XIRR by temperament — a yearly rate</h4>
+      <div className="al-rcb"><h4>Estimated XIRR by temperament, a yearly rate</h4>
         <div className="al-xb">{bars.map((b) => (
           <div key={b.p} className={`al-xcol ${b.p === profile ? 'on' : ''}`}><i style={{ height: grown ? `${(b.v / max) * 78}%` : 0, transition: reduce ? 'none' : 'height 1s cubic-bezier(.2,.7,.3,1)' }}><em>{b.v}%</em></i>{PROFILE_META[b.p].tag}{b.p === profile ? ' ★' : ''}</div>
         ))}</div>
@@ -184,7 +184,7 @@ const GL = {
 export function TakeBeat({ view, fdRate, toast }) {
   const top = view.classes.slice().sort((a, b) => b.pct - a.pct).slice(0, 3).map((c) => `${c.short} ${c.pct}%`).join(' · ');
   const first = view.sip && view.rows[0]?.date ? isoParts(view.rows[0].date) : null;
-  const run = async (fn, ok, bad) => { try { const r = await fn(); toast(r === 'downloaded' ? 'Share image downloaded — attach it in WhatsApp.' : ok); } catch { toast(bad); } };
+  const run = async (fn, ok, bad) => { try { const r = await fn(); toast(r === 'downloaded' ? 'Share image downloaded. Attach it in WhatsApp.' : ok); } catch { toast(bad); } };
   return (
     <>
       <h2 className="al-q sm">{view.sip ? 'Your plan, in your pocket' : 'Your plan, ready to act on'}</h2>
@@ -204,10 +204,10 @@ export function TakeBeat({ view, fdRate, toast }) {
             <button type="button" className="al-btn sm ghost" onClick={() => run(() => shareSIPCard(view.plan, fdRate), 'Share card ready', 'Could not generate the share image.')}>Share</button></li>
           <li><span className="al-gl">{GL.trk}</span><div><b>Tracking</b><span className="d">Log each instalment on SIP Health; see if you are on pace.</span></div>
             <HoldButton label="Hold to track" doneLabel="Tracking" holdSeconds={1}
-              onComplete={() => run(() => api.trackSipPlan(view.plan), 'Plan tracked — log instalments on SIP Health', 'Could not save the tracked plan.')} /></li>
+              onComplete={() => run(() => api.trackSipPlan(view.plan), 'Plan tracked. Log instalments on SIP Health.', 'Could not save the tracked plan.')} /></li>
         </ul>
       )}
-      <p className="al-disc">{view.sip ? 'Festival tilts and XIRR are illustrative, not guarantees. ' : ''}{view.disclaimer || 'Educational tool — not investment advice.'}</p>
+      <p className="al-disc">{view.sip ? 'Festival tilts and XIRR are illustrative, not guarantees. ' : ''}{view.disclaimer || 'Educational tool, not investment advice.'}</p>
     </>
   );
 }
